@@ -12,27 +12,27 @@
                 <div id='calcDisplay'>000</div>
                 <div id='buttonContainer'>
                     <div id='digitsContainer'>
-                        <button class='digit' id='one' value='1'>1</button>
-                        <button class='digit' id='two' value='2'>2</button>
-                        <button class='digit' id='three' value='3'>3</button>
-                        <button class='digit' id='four' value='4'>4</button>
-                        <button class='digit' id='five' value='5'>5</button>
-                        <button class='digit' id='six' value='6'>6</button>
-                        <button class='digit' id='seven' value='7'>7</button>
-                        <button class='digit' id='eight' value='8'>8</button>
-                        <button class='digit' id='nine' value='9'>9</button>
-                        <button class='digit' id='zero' value='0'>0</button>
-                        <button class='digit' id='.' value='.'>.</button>
+                        <button class='digit' id='one' value='1' data-digit='1'>1</button>
+                        <button class='digit' id='two' value='2' data-digit='2'>2</button>
+                        <button class='digit' id='three' value='3' data-value='3'>3</button>
+                        <button class='digit' id='four' value='4' data-digit='4'>4</button>
+                        <button class='digit' id='five' value='5'data-digit='5'>5</button>
+                        <button class='digit' id='six' value='6' data-digit='6'>6</button>
+                        <button class='digit' id='seven' value='7' data-digit='7'>7</button>
+                        <button class='digit' id='eight' value='8' data-digit='8'>8</button>
+                        <button class='digit' id='nine' value='9' data-digit='9'>9</button>
+                        <button class='digit' id='zero' value='0' data-digit='0'>0</button>
+                        <button class='digit' id='.' value='.' data-decimal='.'>.</button>
                     </div>
                     <div id='operatorContainer'>
                         <div id='clearButtonWrapper'>
-                            <button id='clear' id='clear' value='del'>del</button>
+                            <button id='clearButton' value='clear' data-action='clear'>AC</button>
                         </div>
-                        <button class='operator' id='plus' value='+'>+</button>
-                        <button class='operator' id='minus' value='-'>-</button>
-                        <button class='operator' id='times' value='*'>*</button>
-                        <button class='operator' id='divide' value='/'>/</button>
-                        <button class='operator' id='equate' value='='>=</button>
+                        <button class='operator' id='plus' value='+' data-action='plus'>+</button>
+                        <button class='operator' id='minus' value='-' data-action='minus'>-</button>
+                        <button class='operator' id='times' value='*' data-action='times'>*</button>
+                        <button class='operator' id='divide' value='/' data-action='divide'>/</button>
+                        <button class='operator' id='equate' value='=' data-action='equate'>=</button>
                     </div>
                 </div>
             </div>

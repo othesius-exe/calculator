@@ -1,17 +1,14 @@
-function operator (num1, num2, operand) {
-    switch (operand) {
-        case (operand == '*'):
-           return multiply(num1, num2)
-           break;
-        case (operand == '/'):
-            return divide(num1, num2);
-            break;
-        case (operand == '+'):
-            return add(num1, num2);
-            break;
-        case (operand == '-'):
-            return subtract(num1, num2);
-            break;
+function operator(num1, num2, operatorType) {
+    if (operatorType === '+') {
+        add(parseFloat(num1), parseFloat(num2));
+    } else if (operatorType === '-') {
+        subtract(parseFloat(num1), parseFloat(num2));
+
+    } else if (operatorType === '/') {
+        divide(parseFloat(num1), parseFloat(num2));
+
+    } else if (operatorType === '*') {
+        multiply(parseFloat(num1), parseFloat(num2));
     }
 }
 
@@ -31,26 +28,76 @@ function subtract(num1, num2) {
     return num1 - num2;
 }
 
-const equalizer = document.getElementById('equate');
-const display = document.getElementById('calcDisplay');
-
-equalizer.addEventListener('click', (e) => {
-
-})
-
-const digits = document.getElementsByClassName('digit');
-const operator = document.getElementsByClassName('operator');
+const userInput = document.querySelectorAll('button');
+const calcDisplay = document.getElementById('calcDisplay');
+let currentOperand = '';
 let operand1 = ``;
-let operand2 = ``;
-let operator = ``;
+let operatorType = '';
 
-const inputButton = document.querySelectorAll('button');
-
-inputButton.forEach((button) => {
-    inputButton.addEventListener('click', (e) => {
-        if(inputButton.classList.contains('digit')) {
-            operand1 += inputButton.getAttribute('value');
+userInput.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const key = e.target;
+        const action = key.dataset.action;
+        const keyValue = button.getAttribute('value');
+        console.log(keyValue);
+        if(!action) {
+            handleNumbers(keyValue);
+        } else if (action === 'clear') {
+            clearAll();
+        } else if (action === 'plus') {
+            if(currentOperand != '') {
+                operatorType = '+';
+                operand1 = currentOperand;
+                currentOperand = ''
+            }
+        } else if (action === 'minus') {
+            if (currentOperand !== '') {
+                operatorType = '-';
+                operand1 = currentOperand;
+                currentOperand = ''
+            } else {
+                currentOperand = '-'
+            }
+        } else if (action === 'times') {
+            if (currentOperand != '') {
+                operatorType = '*';
+                operand1 = currentOperand;
+                currentOperand = ''
+            }
+        } else if (action === 'divide') {
+            if (currentOperand != '') {
+                operatorType = '/';
+                operand1 = currentOperand;
+                currentOperand = ''
+            }
+        } else if (action === 'equate') {
+            if (operand1 !== '' && currentOperand !== '') {
+                operator(operand1, currentOperand, operatorType);
+                console.log(operatorType);
+            }
         }
     })
-
 })
+
+function handleNumbers(keyValue) {
+
+    if (keyValue === '.' && currentOperand.includes('.')
+        && currentOperand != '0') {
+            // Do nothing
+            currentOperand = currentOperand;
+    } else if (currentOperand === '0' && keyValue === '.') {
+            // Append Decimal
+            currentOperand = '0.'
+    } else {
+            // Append digits
+            currentOperand += keyValue;
+    }
+}
+
+function clearAll() {
+    currentOperand = '';
+    operand1 = '';
+    operatorType = '';
+    display.textContent = '0';
+    console.log(currentOperand)
+}
