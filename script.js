@@ -1,14 +1,14 @@
 function operator(num1, num2, operatorType) {
     if (operatorType === '+') {
-        add(parseFloat(num1), parseFloat(num2));
+        outcome = add(parseFloat(num1), parseFloat(num2));
     } else if (operatorType === '-') {
-        subtract(parseFloat(num1), parseFloat(num2));
+        outcome = subtract(parseFloat(num1), parseFloat(num2));
 
     } else if (operatorType === '/') {
-        divide(parseFloat(num1), parseFloat(num2));
+        outcome = divide(parseFloat(num1), parseFloat(num2));
 
     } else if (operatorType === '*') {
-        multiply(parseFloat(num1), parseFloat(num2));
+        outcome = multiply(parseFloat(num1), parseFloat(num2));
     }
 }
 
@@ -33,6 +33,7 @@ const calcDisplay = document.getElementById('calcDisplay');
 let currentOperand = '';
 let operand1 = ``;
 let operatorType = '';
+let outcome = '';
 
 userInput.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -73,6 +74,7 @@ userInput.forEach((button) => {
         } else if (action === 'equate') {
             if (operand1 !== '' && currentOperand !== '') {
                 operator(operand1, currentOperand, operatorType);
+                calcDisplay.textContent = outcome;
                 console.log(operatorType);
             }
         }
@@ -91,6 +93,7 @@ function handleNumbers(keyValue) {
     } else {
             // Append digits
             currentOperand += keyValue;
+            calcDisplay.textContent = currentOperand;
     }
 }
 
@@ -98,6 +101,6 @@ function clearAll() {
     currentOperand = '';
     operand1 = '';
     operatorType = '';
-    display.textContent = '0';
+    calcDisplay.textContent = '0';
     console.log(currentOperand)
 }
